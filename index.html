@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Neon Arcade RPS</title>
+</head>
+<body>
+    <header class="game-header">
+        <h1 class="header-title">ROCK-PAPER-SCISSORS ARCADE</h1>
+        <p class="subtitle">First to 5 Points!</p>
+
+        <div class="score-container">
+            <div>
+                <div class="score-label">YOU</div>
+                <div class="score-player">2</div> 
+            </div>
+            
+            <div class="score-vs">VS</div>
+            
+            <div>
+                <div class="score-label">COMPUTER</div>
+                <div class="score-computer">1</div>
+            </div>
+        </div>
+    </header>
+
+    ---
+
+    <main class="game-area">
+        <p>Match Status</p>
+
+        <div class="match-status-grid">
+            
+            <div class="choice-box choice-box-player">
+                <p>YOUR CHOICE</p>
+                <div class="choice-icon">✊</div> 
+            </div>
+
+            <div class="choice-box choice-box-cpu">
+                <p>CPU CHOICE</p>
+                <div class="choice-icon">✂</div>
+            </div>
+        </div>
+    </main>
+
+    ---
+
+    <section class="controls-section">
+        <div class="controls-container">
+            
+            <button class="rps-button btn-rock" data-choice="rock">
+                <div class="rps-button-icon">✊</div>
+                ROCK
+            </button>
+
+            <button class="rps-button btn-paper" data-choice="paper">
+                <div class="rps-button-icon">✋</div>
+                PAPER
+            </button>
+
+            <button class="rps-button btn-scissors" data-choice="scissors">
+                <div class="rps-button-icon">✌</div>
+                SCISSORS
+            </button>
+
+        </div>
+    </section>
+    <script src="./script.js"></script>
+</body>
+</html>

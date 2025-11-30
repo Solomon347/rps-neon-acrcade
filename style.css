@@ -1,0 +1,311 @@
+:root {
+  /* Backgrounds */
+  --color-dark-bg: #1A1A2E; /* Dark Navy/Almost Black */
+  --color-mid-bg: #2C2C40; /* Slightly lighter for containers */
+
+  /* Text Colors */
+  --color-white: #FFFFFF;
+  --color-light-gray: #CCCCCC;
+
+  /* Neon Primary Colors (Used for Glows and Highlights) */
+  --neon-blue: #00FFFF;     /* Cyan/Electric Blue */
+  --neon-pink: #FF00FF;     /* Hot Pink/Magenta */
+  --neon-green: #7CFC00;    /* Lime Green (for WINNER) */
+  --neon-orange: #FF8C00;   /* Deep Orange (for ROCK button) */
+  --neon-cyan: #1E90FF;     /* Dodger Blue (for PAPER button) */
+  --neon-magenta: #FF1493;  /* Deep Pink (for SCISSORS button) */
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: var(--color-white);
+  font-family: 'Montserrat', sans-serif; /* Recommended font */
+  text-align: center;
+}
+
+/* --- Header Title (ROCK-PAPER-SCISSORS ARCADE) --- */
+.header-title {
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 5px;
+  /* Use a subtle pink/blue gradient for the text */
+  background: linear-gradient(90deg, var(--neon-blue) 0%, var(--neon-pink) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(255, 0, 255, 0.5); /* Subtle dual glow */
+  margin-bottom: 0.5em;
+}
+
+/* --- Subtitle (First to 5 Points!) --- */
+.subtitle {
+  font-size: 1.1em;
+  color: var(--color-light-gray);
+  margin-bottom: 2em;
+}
+
+/* --- Score Display (YOU: 2 VS COMPUTER: 1) --- */
+.score-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2em;
+  font-weight: 900;
+  margin-bottom: 3em;
+}
+
+.score-label {
+    font-size: 0.5em;
+    font-weight: 400;
+    color: var(--color-light-gray);
+    margin-bottom: 0.2em;
+}
+
+.score-player {
+  color: var(--neon-blue); /* Player score color */
+  padding-right: 20px;
+}
+
+.score-computer {
+  color: var(--neon-pink); /* Computer score color */
+  padding-left: 20px;
+}
+
+.score-vs {
+  font-size: 0.8em;
+  color: var(--color-white);
+}
+
+/* --- Container for Player and CPU choices --- */
+.match-status-grid {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+}
+
+/* --- Individual Choice Box (Winner/Loser) --- */
+.choice-box {
+  width: 250px; /* Adjust size as needed */
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative; /* For the WINNER overlay */
+  margin: 0 20px;
+  border: 3px solid; /* Border will use the glow color */
+}
+
+/* --- Player's Box Styles (Cyan/Blue glow) --- */
+.choice-box-player {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Blue neon glow */
+}
+
+/* --- CPU's Box Styles (Pink/Magenta glow) --- */
+.choice-box-cpu {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.7); /* Pink neon glow */
+}
+
+/* --- The actual icon/image inside the box (e.g., the fist, scissors) --- */
+.choice-icon {
+  font-size: 6em; /* Adjust icon size */
+  opacity: 0.8;
+}
+
+.choice-box-player .choice-icon {
+  color: var(--neon-orange); /* Orange outline for player's ROCK in the example */
+}
+
+.choice-box-cpu .choice-icon {
+  color: var(--neon-pink);
+}
+
+/* --- WINNER/LOSER Overlay --- */
+.winner-text {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  font-weight: 900;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+  animation: pulse 1.5s infinite alternate; /* Optional: adds a pulsing animation */
+}
+
+@keyframes pulse {
+  from { opacity: 0.7; }
+  to { opacity: 1; text-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--neon-green); }
+}
+
+/* --- Container for the 3 buttons --- */
+.controls-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 4em;
+}
+
+/* --- Base Button Style (Circular) --- */
+.rps-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  color: var(--color-dark-bg); /* Dark text on bright button */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Standard shadow */
+}
+
+/* --- Button Hover Effect (The Neon Glow) --- */
+.rps-button:hover {
+  transform: scale(1.05); /* Slight lift */
+  /* Add a border and strong box shadow for the glow effect */
+  border: 3px solid var(--color-white);
+}
+
+.rps-button-icon {
+    font-size: 2em;
+    margin-bottom: 3px;
+    color: var(--color-dark-bg);
+}
+
+/* --- Individual Button Colors --- */
+.btn-rock {
+  background-color: var(--neon-orange);
+}
+.btn-rock:hover {
+  box-shadow: 0 0 20px var(--neon-orange), 0 0 40px var(--neon-orange);
+}
+
+.btn-paper {
+  background-color: var(--neon-cyan);
+}
+.btn-paper:hover {
+  box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+}
+
+.btn-scissors {
+  background-color: var(--neon-magenta);
+}
+.btn-scissors:hover {
+  box-shadow: 0 0 20px var(--neon-magenta), 0 0 40px var(--neon-magenta);
+}
+
+
+.choice-box-winner {
+    /* Override the border to green glow */
+    border-color: var(--neon-green) !important; 
+    box-shadow: 0 0 15px var(--neon-green), 0 0 30px var(--neon-green) !important; 
+}
+
+
+
+/* =================================================== */
+/* === MOBILE MEDIA QUERY (Max Width 600px) === */
+/* =================================================== */
+
+@media (max-width: 600px) {
+
+    /* --- General Sizing Adjustments --- */
+    .header-title {
+        font-size: 1.5em; 
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-size: 0.8em;
+        margin-bottom: 1.5em;
+    }
+
+    .score-container {
+        font-size: 1.5em; 
+        margin-bottom: 1.5em; /* Reduced margin */
+    }
+    
+    /* --- 1. Match Status: Side-by-Side (Split Screen) --- */
+
+    /* Use flexbox to keep them side-by-side even on mobile */
+    .match-status-grid {
+        flex-direction: row; /* KEEP horizontal */
+        justify-content: center;
+        gap: 10px; /* Reduced space between the two boxes */
+        margin-top: 0.5em;
+        margin-bottom: 2em;
+        padding: 0 5px; /* Add small padding so boxes don't touch screen edges */
+    }
+
+    /* Adjust the size of the individual choice boxes to fit */
+    .choice-box {
+        width: 45vw; /* Use 45% of the viewport width */
+        max-width: 200px; /* Don't let them get too big on small tablets */
+        height: 150px; /* Make them shorter */
+        padding: 5px;
+        margin: 0;
+    }
+    
+    .choice-icon {
+        font-size: 3em; /* Smaller icon size */
+    }
+    
+    /* Center the choice label text (YOUR CHOICE / CPU CHOICE) */
+    .choice-box p {
+        font-size: 0.7em;
+        margin-top: 0.5em;
+    }
+
+    /* Adjust WINNER Text size and position */
+    .winner-text {
+        font-size: 1.5em; /* Much smaller text */
+        top: -15px;      /* Move it up slightly less */
+        text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+    }
+
+    /* --- 2. Player Controls: Horizontal Row --- */
+
+    .controls-container {
+        flex-direction: row; /* KEEP horizontal */
+        flex-wrap: wrap;     /* Allow buttons to wrap to the next line if too wide */
+        justify-content: center;
+        gap: 10px;           /* Reduce spacing between buttons */
+        margin-top: 1em;
+        padding: 0 10px;
+    }
+
+    /* Adjust the size of the circular buttons */
+    .rps-button {
+        width: 90px;  /* Smallest possible width */
+        height: 90px;
+        font-size: 0.7em; /* Smallest text label */
+    }
+    
+    .rps-button-icon {
+        font-size: 1.2em; /* Smallest icon inside button */
+    }
+}
+
+
+/* =================================================== */
+/* === FALLBACK FOR VERY SMALL SCREENS (e.g., iPhone SE) === */
+/* =================================================== */
+
+@media (max-width: 350px) {
+    /* Slightly reduce button size again if the screen is tiny */
+    .rps-button {
+        width: 80px;
+        height: 80px;
+    }
+    /* Stack them if they absolutely cannot fit in a row */
+    .controls-container {
+        flex-wrap: wrap; /* Ensure they wrap if horizontal space runs out */
+    }
+}
